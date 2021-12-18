@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic {{topic.topic_name}}</title>
+    <link rel="stylesheet" type="text/css" href="/static/topic.css">
+</head>
+<body>
+    <a href="/">Go back to homepage</a>
+    <h1>Vote for {{topic.topic_name}}</h1>
+    <form action="/topic/{{topic_id}}/newChoice" method="post">
+        <label for="choice_name">New choice</label>
+        <input type="text" name="choice_name" id="choice_name">
+        <button type="submit">Add</button>
+
+    </form>
+    <table>
+        <tr>
+            <th>No</th>
+            <th>Choice</th>
+            <th>Vote</th>
+            <th>Action</th>
+            <th></th>
+        </tr>
+        {% for vote in votes %}
+        <tr>
+            <td>{{loop.index}}</td>
+            <td>{{vote.choice_name}}</td>
+            <td>{{vote.choice_count}}</td>
+            <td>
+                <form action="/topic/{{topic_id}}/vote" method="post">
+                    <input type="hidden" name="choice" id="choice" value="{{vote.vote_id}}">
+                    <button type="submit">vote</button>
+                </form>
+            </td>
+            <td><button type="button" class="btn btn-primary">-</button></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

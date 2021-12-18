@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote App</title>
+</head>
+<body>
+    <h1>Vote App</h1>
+    <button onclick="document.location='/newTopic'">Add Topic</button>
+    {% for data in topics %}
+    <!-- <li><a href="/topic/{{data['topic_id']}}">{{data['topic_name']}}</a></li> -->
+    <li><a href="/topic/{{data.topic_id}}">{{data.topic_name}}</a></li>
+    {% endfor %}
+</body>
+</html>
